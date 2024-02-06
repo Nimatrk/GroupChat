@@ -22,7 +22,8 @@
     </Window.DataContext>
 
     <Grid>
-        <ContentControl Content="{Binding NavigationStore.CurrentViewModel}">
+        <ContentControl Content="{Binding NavigationStore.CurrentViewModel}"
+                        Focusable="False">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type viewmodel:ConnectionViewModel}">
                     <local:ConnectionView/>

@@ -50,7 +50,6 @@ namespace GroupChat.Server
                 packetBuilder.WriteMessage(uid);
                 c.ClientSocket?.Client.Send(packetBuilder.GetBytes());
             });
-            BroadcastMessage($"User \"{uid}\" disconnected!");
         }
 
         public static void BroadcastMessage(string message)

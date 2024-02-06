@@ -38,13 +38,10 @@ namespace GroupChat.UI.Net
 
         public void SendMessageToServer(string message)
         {
-            if (_client!.Connected)
-            {
-                PacketBuilder packetBuilder = new PacketBuilder();
-                packetBuilder.WriteOpCode(5);
-                packetBuilder.WriteMessage(message);
-                _client.Client.Send(packetBuilder.GetBytes());
-            }
+            PacketBuilder packetBuilder = new PacketBuilder();
+            packetBuilder.WriteOpCode(5);
+            packetBuilder.WriteMessage(message);
+            _client!.Client.Send(packetBuilder.GetBytes());
         }
 
         private void ProcessPackets()

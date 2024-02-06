@@ -15,7 +15,7 @@ namespace GroupChat.Server.Model
             ClientSocket = client;
             packetReader = new PacketReader(ClientSocket.GetStream());
 
-            var opcode = packetReader.ReadOpCode();
+            _ = packetReader.ReadOpCode();
             UID = packetReader.ReadMessage();
             Username = packetReader.ReadMessage();
 

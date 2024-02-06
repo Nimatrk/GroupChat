@@ -38,6 +38,7 @@ namespace GroupChat.UI.MVVM.ViewModel
             set { _messages = value; OnPropertyChanged(); }
         }
 
+        public RelayCommand SendMessageCommand { get; set; }
 
         public ClientViewModel(NavigationStore navigationStore, Server server, Model.User user)
         {
@@ -49,6 +50,7 @@ namespace GroupChat.UI.MVVM.ViewModel
             this.server.ConnectedEvent += UserConnected;
             this.server.DisconnectedEvent += UserDisconnected;
             this.server.ReciveMessageEvent += MessageRecived;
+            SendMessageCommand = new RelayCommand(o => SendMessage(), o => !string.IsNullOrWhiteSpace(Message));
         }
 
         private void UserConnected()
@@ -69,7 +71,13 @@ namespace GroupChat.UI.MVVM.ViewModel
         }
         private void MessageRecived()
         {
-            throw new NotImplementedException();
+            string? msg = server.PacketReader?.ReadMessage();
+            Application.Current.Dispatcher.Invoke(() => Messages.Add(msg!));
+        }
+        private void SendMessage()
+        {
+            server.SendMessageToServer(Message!);
+            Message = string.Empty;
         }
     }
 }
