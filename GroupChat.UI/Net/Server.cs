@@ -6,11 +6,13 @@ namespace GroupChat.UI.Net
 {
     public class Server
     {
-        TcpClient? _client;
-        public PacketReader PacketReader { get; set; }
-        public event Action ConnectedEvent;
-        public event Action DisconnectedEvent;
-        public event Action ReciveMessageEvent;
+        private TcpClient? _client;
+
+        public PacketReader? PacketReader { get; set; }
+        public event Action? ConnectedEvent;
+        public event Action? DisconnectedEvent;
+        public event Action? ReciveMessageEvent;
+
 
         public Server()
         {
@@ -24,14 +26,11 @@ namespace GroupChat.UI.Net
                 _client.Connect("127.0.0.1", 7891);
                 PacketReader = new PacketReader(_client.GetStream());
 
-                if (!string.IsNullOrWhiteSpace(user.Username))
-                {
-                    PacketBuilder packetBuilder = new PacketBuilder();
-                    packetBuilder.WriteOpCode(0);
-                    packetBuilder.WriteMessage(user.UID!);
-                    packetBuilder.WriteMessage(user.Username!);
-                    _client.Client.Send(packetBuilder.GetBytes());
-                }
+                PacketBuilder packetBuilder = new PacketBuilder();
+                packetBuilder.WriteOpCode(0);
+                packetBuilder.WriteMessage(user.UID!);
+                packetBuilder.WriteMessage(user.Username!);
+                _client.Client.Send(packetBuilder.GetBytes());
 
                 ProcessPackets();
             }
@@ -54,7 +53,7 @@ namespace GroupChat.UI.Net
             {
                 while (true)
                 {
-                    var opcode = PacketReader.ReadOpCode();
+                    var opcode = PacketReader?.ReadOpCode();
                     switch (opcode)
                     {
                         case 1:
