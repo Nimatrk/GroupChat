@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace GroupChat.UI.MVVM.ViewModel
 {
-    public class MainViewModel : ObservableObject
+    public class ConnectionViewModel : ObservableObject
     {
-
     }
 }

@@ -3,66 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GroupChat.UI.MVVM.View" xmlns:viewmodel="clr-namespace:GroupChat.UI.MVVM.ViewModel"
+        xmlns:local="clr-namespace:GroupChat.UI.MVVM.View"
         mc:Ignorable="d"
         Title="MainView" Height="450" Width="800">
-
-    <Window.DataContext>
-        <viewmodel:MainViewModel/>
-    </Window.DataContext>
-    
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
-        <DockPanel>
-            <TextBox Text="{Binding User.Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                     DockPanel.Dock="Top"
-                     Height="25"/>
-            <Button DockPanel.Dock="Top" 
-                    Content="Connect"
-                    Command="{Binding ConnectCommand}"
-                    Height="25"/>
-            <ListView DockPanel.Dock="Top"
-                      ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </DockPanel>
-
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <ListView ItemsSource="{Binding Messages, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBox Text="{Binding Message}" Height="40"
-                         VerticalContentAlignment="Center"/>
-                <Button Grid.Column="1"
-                        Content="Send"
-                        Command="{Binding SendCommand}"
-                        Width="40"
-                        Height="40"/>
-            </Grid>
-        </Grid>
+        
     </Grid>
 </Window>
