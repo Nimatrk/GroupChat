@@ -16,10 +16,10 @@ namespace GroupChat.UI.MVVM.ViewModel
     {
         private NavigationStore navigationStore;
         private Server server;
-        private User user;
         private ObservableCollection<User> _users;
         private string? _message;
 
+        public User User { get; set; }
         public ObservableCollection<User> Users
         {
             get { return _users; }
@@ -44,7 +44,7 @@ namespace GroupChat.UI.MVVM.ViewModel
         {
             this.navigationStore = navigationStore;
             this.server = server;
-            this.user = user;
+            User = user;
             _users = new ObservableCollection<User>();
             _messages = new ObservableCollection<string>();
             this.server.ConnectedEvent += UserConnected;

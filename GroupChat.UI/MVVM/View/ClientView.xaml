@@ -20,6 +20,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+        <!-- Contacts -->
         <materialDesign:Card Background="#673ab7"
                              materialDesign:ShadowAssist.ShadowDepth="Depth2"
                              Padding="12.5">
@@ -27,8 +28,10 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
+                <!-- Title -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -36,8 +39,8 @@
                     </Grid.ColumnDefinitions>
                     <materialDesign:PackIcon Kind="Contacts"
                                              Foreground="#FFFFFF"
-                                             Width="35"
-                                             Height="35"
+                                             Width="40"
+                                             Height="40"
                                              HorizontalAlignment="Center"
                                              VerticalAlignment="Center"/>
                     <TextBlock Grid.Column="1" 
@@ -48,6 +51,7 @@
                                VerticalAlignment="Center"/>
                 </Grid>
 
+                <!-- Manage Contacts -->
                 <ListView Grid.Row="1"
                           ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                           Focusable="False"
@@ -56,6 +60,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal"
                                         Margin="7.5 0 7.5 0">
+                                <!-- Representation Of Each Contact -->
                                 <materialDesign:PackIcon Kind="Contact"
                                                          Foreground="#FFFFFF"
                                                          Width="25"
@@ -72,9 +77,25 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                
+                <!-- Showing User Information -->
+                <StackPanel Grid.Row="2"
+                            Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="User"
+                                             Foreground="#C0C0C0"
+                                             Width="32.5"
+                                             Height="32.5"/>
+                    <TextBlock Text="{Binding User.Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                               Style="{DynamicResource MaterialDesignBodyTextBlock}"
+                               Foreground="#C0C0C0"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="12.5 0 0 0"/>
+                </StackPanel>
             </Grid>
         </materialDesign:Card>
 
+        <!-- Messages -->
         <materialDesign:Card Grid.Column="1"
                              materialDesign:ShadowAssist.ShadowDepth="Depth3"
                              Margin="20"
@@ -86,7 +107,7 @@
                 </Grid.RowDefinitions>
 
                 <ListView ItemsSource="{Binding Messages, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
-                          Margin="0 10 0 0">
+                          Margin="0 0 0 30">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0 15 0 0">
